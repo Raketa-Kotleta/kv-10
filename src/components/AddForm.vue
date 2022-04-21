@@ -18,18 +18,25 @@
   </div>
   <div class="">
     <label for="subbtn">
-      <input type="submit" id="subbtn" @click.prevent = "$emit('add-article', article)">
+      <router-link to="/"><input type="submit" id="subbtn" @click.prevent = "add_art(article);"></router-link>
     </label>
   </div>
 </div>
 </template>
 <script>
+import store from '../store'
 export default {
   name: "AddForm",
   props:{
     author: String,
     body: String,
     published: Boolean
+  },
+  methods:{
+    add_art(value) {
+      store.add_art(value);
+      this.$router.push('/');
+    }
   },
   data(){
     return{

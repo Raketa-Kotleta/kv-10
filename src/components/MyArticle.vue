@@ -8,7 +8,7 @@
       <br>
       <br>
       <CheckBox :id="id" :published="published" @change-one = "$emit('change-publishing',id)"></CheckBox>
-      <label for="" >Опубликовано</label>
+      <label >Опубликовано</label>
   </div>
 </div>
 </template>

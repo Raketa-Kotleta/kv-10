@@ -1,8 +1,9 @@
 <template>
-  <input type="checkbox" id="" @change.prevent = "$emit('change-one')" :checked="published">
+  <input type="checkbox" id="" @change.prevent = "change_status(id)" v-model="publ">
 </template>
 
 <script>
+import store from "../store"
 export default {
   name: "CheckBox",
   props:{
@@ -12,6 +13,16 @@ export default {
   watch:{
     published(newVal, oldVal){
       console.log(`${oldVal} -> ${newVal}`)
+    }
+  },
+  methods:{
+    change_status(id){
+      store.change_status(id);
+    }
+  },
+  data(){
+    return{
+      publ: this.published,
     }
   }
 }
