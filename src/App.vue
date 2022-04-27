@@ -35,14 +35,14 @@ nav a.router-link-exact-active {
 
 import CheckBox from "./components/CheckBox";
 import Vue from "vue";
-import store from "@/store";
+
 Vue.component('CheckBox',CheckBox);
 export default {
   components: {
 
   },
   beforeMount() {
-    store.parse_articles();
+
   }
 }
 </script>

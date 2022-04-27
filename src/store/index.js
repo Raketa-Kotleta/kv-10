@@ -1,22 +1,48 @@
-var store = {
-    debug: true,
-    state: {
-        articles: [],
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    articles: [],
+    problem_state: 2,
+  },
+  getters: {
+  },
+  mutations: {
+    add_art(state, value){
+      let new_article = {
+        id: state.articles[state.articles.length-1].id+1,
+        ...value
+      }
+      state.articles.push(new_article);
+      console.log(new_article.id);
     },
-    add_art(value){
-        let new_article = {
-            id: this.state.articles[this.state.articles.length-1].id+1,
-            ...value
-        }
-        this.state.articles.push(new_article);
-        console.log(new_article.id);
+    change_status(state, id){
+      state.articles[id-1].published = !state.articles[id-1].published;
     },
-    change_status(id){
-        this.state.articles[id-1].published = !this.state.articles[id-1].published;
-    },
-    parse_articles(){
-        fetch('/js.json').then(response => response.json()).then(articles => this.state.articles = articles);
-        console.log("fetched data");
+    add_all_articles(state, articles){
+      state.articles = articles;
     }
-};
-export default store;
+  },
+  actions: {
+    parse_articles(context){
+      fetch('/js.json')
+          .then((response) => {
+                response.ok === true ? this.state.problem_state = true : this.state.problem_state = false;
+                console.log(response.ok);
+                return response.json();
+              }
+          )
+          .then(articles => context.commit('add_all_articles',articles));
+      console.log("fetched data");
+    },
+    add_article(context, value){
+      context.commit('add_art', value);
+    }
+  },
+  modules: {
+  }
+})

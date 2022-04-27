@@ -34,7 +34,7 @@ export default {
   },
   methods:{
     add_art(value) {
-      store.add_art(value);
+      store.dispatch('add_art',value);
       this.$router.push('/');
     }
   },
