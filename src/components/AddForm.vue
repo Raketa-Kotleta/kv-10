@@ -25,6 +25,7 @@
 </template>
 <script>
 import store from '../store'
+import {types} from '@/store/types.js'
 export default {
   name: "AddForm",
   props:{
@@ -34,7 +35,7 @@ export default {
   },
   methods:{
     add_art(value) {
-      store.dispatch('add_art',value);
+      store.dispatch(types.mutations.ADD_ART,value);
       this.$router.push('/');
     }
   },

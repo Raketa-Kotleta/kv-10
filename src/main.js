@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-store.dispatch('parse_articles');
+store.dispatch('load_modules/parse_articles');
 
 Vue.config.productionTip = false
 

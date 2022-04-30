@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import load_module from "@/services/LoadModule";
 
 
 Vue.use(Vuex)
@@ -7,7 +8,6 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     articles: [],
-    problem_state: 2,
   },
   getters: {
   },
@@ -28,21 +28,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    parse_articles(context){
-      fetch('/js.json')
-          .then((response) => {
-                response.ok === true ? this.state.problem_state = true : this.state.problem_state = false;
-                console.log(response.ok);
-                return response.json();
-              }
-          )
-          .then(articles => context.commit('add_all_articles',articles));
-      console.log("fetched data");
-    },
     add_article(context, value){
       context.commit('add_art', value);
     }
   },
   modules: {
+    load_modules: load_module
   }
 })

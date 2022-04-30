@@ -17,7 +17,7 @@ export default {
   },
   methods:{
     change_status(id){
-      store.commit('change_status',id);
+      store.commit('change_status', id);
     }
   },
   data(){
